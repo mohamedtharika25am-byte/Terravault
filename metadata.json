@@ -1,0 +1,6 @@
+{
+  "name": "TERRAVAULT",
+  "description": "GIS-based digital public infrastructure for unified land records, conflict detection, and parcel intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
