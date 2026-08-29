@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import 'leaflet/dist/leaflet.css';
+
+:root {
+  --primary: #167A5B;
+  --primary-dark: #0F543E;
+  --primary-light: #E8F4EE;
+  --sage-accent: #7FA99B;
+  --ivory-bg: #F8FAF7;
+  --card-bg: #FFFFFF;
+  --surface-alt: #EEF3F0;
+  --text-primary: #192A24;
+  --text-secondary: #52665F;
+  --text-muted: #7E948C;
+  --border-subtle: #DEE8E3;
+  --border-strong: #BED0C8;
+  
+  --verified-green: #167A5B;
+  --verified-bg: #E6F6F0;
+  --warning-amber: #D99B2B;
+  --warning-bg: #FEF6E9;
+  --danger-crimson: #D94848;
+  --danger-bg: #FEEFEF;
+  --info-blue: #2E7BB4;
+  --info-bg: #EDF5FC;
+
+  --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --shadow-sm: 0 1px 3px rgba(16, 40, 30, 0.05), 0 1px 2px rgba(16, 40, 30, 0.03);
+  --shadow-md: 0 4px 12px rgba(16, 40, 30, 0.08), 0 2px 4px rgba(16, 40, 30, 0.04);
+  --shadow-lg: 0 12px 28px rgba(16, 40, 30, 0.12), 0 4px 8px rgba(16, 40, 30, 0.06);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--ivory-bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-alt);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sage-accent);
+}
+
+/* Layout Utilities */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--ivory-bg);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.content-body {
+  flex: 1;
+  padding: 24px 32px;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Badges & Chips */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.badge-verified {
+  background-color: var(--verified-bg);
+  color: var(--verified-green);
+  border: 1px solid rgba(22, 122, 91, 0.25);
+}
+
+.badge-review {
+  background-color: var(--warning-bg);
+  color: #B47814;
+  border: 1px solid rgba(217, 155, 43, 0.3);
+}
+
+.badge-critical {
+  background-color: var(--danger-bg);
+  color: var(--danger-crimson);
+  border: 1px solid rgba(217, 72, 72, 0.3);
+}
+
+.badge-under-verification {
+  background-color: var(--info-bg);
+  color: var(--info-blue);
+  border: 1px solid rgba(46, 123, 180, 0.3);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  border: 1px solid transparent;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #FFFFFF;
+}
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+  background-color: var(--surface-alt);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+.btn-secondary:hover {
+  background-color: #E2ECE7;
+  border-color: var(--border-strong);
+}
+
+.btn-danger {
+  background-color: var(--danger-crimson);
+  color: white;
+}
+.btn-danger:hover {
+  background-color: #B93232;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--border-strong);
+  color: var(--text-secondary);
+}
+.btn-outline:hover {
+  background-color: var(--surface-alt);
+  color: var(--text-primary);
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+}
+
+.card-interactive {
+  cursor: pointer;
+}
+.card-interactive:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(222, 232, 227, 0.8);
+}
+
+/* Leaflet Map Customization */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background-color: #EBF1EE;
+  font-family: var(--font-main);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  padding: 4px;
+  border: 1px solid var(--border-subtle);
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px;
+  line-height: 1.4;
+}
+
+/* Pulse animation for high risk */
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 0 0 rgba(217, 72, 72, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(217, 72, 72, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(217, 72, 72, 0); }
+}
+
+.pulse-critical {
+  animation: pulse-red 2s infinite;
+}
+
+/* Official Government Report Print Styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .report-page {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}
